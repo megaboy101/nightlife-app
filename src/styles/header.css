@@ -1,0 +1,39 @@
+.headerColor {
+    background: linear-gradient(to right, #00d2ff, #3a7bd5);
+}
+
+.title {
+    font-size: 80px;
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+    right: 38px;
+}
+
+.d {
+    position: relative;
+    left: 38px;
+    top: 19px;
+}
+
+.buttonField {
+    margin: auto;
+}
+
+.buttonContainer {
+    padding: 10px
+}
+
+.twitterColor {
+    color: #1DA1F2;
+}
+
+.curveMod {
+    border-radius: 100px !important;
+}
+
+@media screen and (min-width: 1000px) {
+    .inputField {
+        max-width: 750px;
+        margin: auto;
+    }
+}
