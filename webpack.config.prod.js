@@ -15,9 +15,6 @@ export default {
         loaders: [
 			{test: /\.(js|svg)$/, exclude: /node_modules/, loader: 'babel-loader'},
             {test: /\.css$/, exclude: /node_modules/, loader: ExtractTextPlugin.extract({fallback: 'style-loader', use: [{loader: 'css-loader', options: {modules: true, localIdentName: '[name]__[local]___[hash:base64:5]'}}]})}, // css loader with modules activated
-
-                                                                
-
             {test: /\.css$/, include: /node_modules/, loader: ExtractTextPlugin.extract({fallback: 'style-loader', use: 'css-loader'})}, // Without modules, for react notification library
 			{test: /\.(scss|sass)$/, exclude: /node_modules\/(?!bulma)/, loader: ExtractTextPlugin.extract({fallback: 'style-loader', use: ['css-loader', 'sass-loader']})},
 			{test: /\.(jpg|png)$/, exclude: /node_modules/, loader: 'url-loader'},

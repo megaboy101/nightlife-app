@@ -10,7 +10,9 @@
     "build-html": "babel-node build/buildHtml.js",
     "prebuild": "node_modules/.bin/npm-run-all clean-dist build-html",
     "build": "node_modules/.bin/babel-node build/build.js",
-    "postinstall": "npm run build"
+    "install-build-dependancies": "npm install babel-cli babel-core babel-loader babel-plugin-transform-decorators-legacy babel-preset-es2015 babel-preset-stage-0 babel-preset-react cheerio css-loader dotenv extract-text-webpack-plugin file-loader mobx-react-devtools node-sass npm-run-all react-svg-loader rimraf sass-loader style-loader url-loader webpack webpack-dev-middleware",
+    "uninstall-build-dependancies": "npm uninstall babel-cli babel-core babel-loader babel-plugin-transform-decorators-legacy babel-preset-es2015 babel-preset-stage-0 babel-preset-react cheerio css-loader dotenv extract-text-webpack-plugin file-loader mobx-react-devtools node-sass npm-run-all react-svg-loader rimraf sass-loader style-loader url-loader webpack webpack-dev-middleware",
+    "heroku-postbuild": "npm run install-build-dependancies && npm run build && npm run uninstall-build-dependancies"
   },
   "author": "",
   "license": "ISC",
