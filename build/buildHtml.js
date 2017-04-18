@@ -1,6 +1,8 @@
 /*eslint-disable no-console*/
 import fs from 'fs';
+console.log('Before cheerio');
 import cheerio from 'cheerio';
+console.log('After cheerio');
 
 fs.readFile('src/index.html', 'utf8', (err, markup) => {
     if (err)
