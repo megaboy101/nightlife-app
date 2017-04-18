@@ -43,6 +43,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "cheerio": "^0.22.0",
     "css-loader": "^0.28.0",
+    "dotenv": "^4.0.0",
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.11.1",
     "mobx-react-devtools": "^4.2.11",

@@ -4,24 +4,26 @@ import webpack from 'webpack';
 import passport from 'passport';
 import session from 'express-session';
 import mongoose from 'mongoose';
+import { config } from 'dotenv';
 import bodyParser from 'body-parser';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import path from 'path';
-import config from '../webpack.config.dev.js';
+import webpackConfig from '../webpack.config.dev.js';
 import router from './routes.js';
 import authConfig from './passport.config.js';
 
 
+config(); // Load env variables
 const port = 3000;
 const app = express();
-const compiler = webpack(config);
+const compiler = webpack(webpackConfig);
 
 
-mongoose.connect(`mongodb://megaboy101:thejacob@ds153730.mlab.com:53730/nightlife-app`);
+mongoose.connect(`mongodb://${process.env.MLAB_USERNAME}:${process.env.MLAB_PASSWORD}@ds153730.mlab.com:53730/nightlife-app`);
 
 app.use(webpackDevMiddleware(compiler, {
     noInfo: false,
-    publicPath: config.output.publicPath
+    publicPath: webpackConfig.output.publicPath
 }));
 
 authConfig(passport);

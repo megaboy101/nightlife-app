@@ -17,7 +17,7 @@ router.get('/loginSuccess', passport.authenticate('twitter'), (req, res) => {
 
 // Ajax calls
 router.get('/searchBars/:searchTerm', (req, res) => {
-    fetch(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=bars+in+${req.params.searchTerm}&key=AIzaSyDJ96DTAQB79h21xiOmVcSqV0vd8sKF0mY`)
+    fetch(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=bars+in+${req.params.searchTerm}&key=${process.env.GOOGLE_PLACES_KEY}`)
     .then(data => data.json())
     .then(places => {
         res.send(places.results);
@@ -26,7 +26,7 @@ router.get('/searchBars/:searchTerm', (req, res) => {
 });
 
 router.get('/searchImage/:reference', (req, res) => {
-    fetch(`https://maps.googleapis.com/maps/api/place/photo?photoreference=${req.params.reference}&maxwidth=256&key=AIzaSyDJ96DTAQB79h21xiOmVcSqV0vd8sKF0mY`)
+    fetch(`https://maps.googleapis.com/maps/api/place/photo?photoreference=${req.params.reference}&maxwidth=256&key=${process.env.GOOGLE_PLACES_KEY}`)
     .then(image => {
         res.send(image);
     });

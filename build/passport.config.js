@@ -14,9 +14,9 @@ export default passport => {
     });
 
     passport.use(new Strategy({
-        consumerKey: 'lhpEHhC16JimM7xJf2DdwIzOX',
-        consumerSecret: 'JvPyVRwJQNNISvXqu0jcp2GZpYB7fGCAUvIyYmTsmEBMTLlhwj',
-        callbackURL: `http://localhost:3000/api/loginSuccess`
+        consumerKey: process.env.PASSPORT_KEY,
+        consumerSecret: process.env.PASSPORT_SECRET,
+        callbackURL: `https://megaboy-nightlife-app.herokuapp.com/api/loginSuccess`
     }, (token, tokenSecret, profile, done) => {
         process.nextTick(() => {
             User.find({username: profile.username}, (err, users) => {
