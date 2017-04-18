@@ -10,14 +10,16 @@
     "build-html": "babel-node build/buildHtml.js",
     "prebuild": "node_modules/.bin/npm-run-all clean-dist build-html",
     "build": "node_modules/.bin/babel-node build/build.js",
-    "install-build-dependancies": "npm install babel-cli babel-core babel-loader babel-plugin-transform-decorators-legacy babel-preset-es2015 babel-preset-stage-0 babel-preset-react cheerio css-loader dotenv extract-text-webpack-plugin file-loader mobx-react-devtools node-sass npm-run-all react-svg-loader rimraf sass-loader style-loader url-loader webpack webpack-dev-middleware",
-    "uninstall-build-dependancies": "npm uninstall babel-cli babel-core babel-loader babel-plugin-transform-decorators-legacy babel-preset-es2015 babel-preset-stage-0 babel-preset-react cheerio css-loader dotenv extract-text-webpack-plugin file-loader mobx-react-devtools node-sass npm-run-all react-svg-loader rimraf sass-loader style-loader url-loader webpack webpack-dev-middleware",
-    "heroku-postbuild": "npm run install-build-dependancies && npm run build && npm run uninstall-build-dependancies"
+    "install-build-dependancies": "npm install babel-loader babel-plugin-transform-decorators-legacy babel-preset-es2015 babel-preset-stage-0 babel-preset-react cheerio css-loader dotenv extract-text-webpack-plugin file-loader mobx-react-devtools node-sass npm-run-all react-svg-loader rimraf sass-loader style-loader url-loader webpack webpack-dev-middleware",
+    "uninstall-build-dependancies": "npm uninstall babel-loader babel-plugin-transform-decorators-legacy babel-preset-es2015 babel-preset-stage-0 babel-preset-react cheerio css-loader dotenv extract-text-webpack-plugin file-loader mobx-react-devtools node-sass npm-run-all react-svg-loader rimraf sass-loader style-loader url-loader webpack webpack-dev-middleware",
+    "postinstall": "npm run install-build-dependancies && npm run build && npm run uninstall-build-dependancies"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.16.1",
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
     "body-parser": "^1.17.1",
     "bounce.js": "^0.8.2",
     "bulma": "^0.4.0",
@@ -36,8 +38,6 @@
     "react-notifications": "^1.3.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.24.1",
-    "babel-core": "^6.24.1",
     "babel-loader": "^6.4.1",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-preset-es2015": "^6.24.1",
