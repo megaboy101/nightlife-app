@@ -6,8 +6,7 @@ import Drip from './DripModel.js';
 
 export default class AppModel {
     @observable username = 'Guest';
-    googleResults = [];
-    savedDrips = [];
+    @observable savedDrips = [];
     @observable drips = [];
     @observable input = '';
     @observable loading = false;
@@ -30,12 +29,10 @@ export default class AppModel {
         this.input = e.target.value;
     }
 
-    @action.bound search(resetter) {
+    @action.bound search() {
         if (this.input === '')
             return NotificationManager.error('', 'No search term Entered!');
         this.loading = true;
-        if (!resetter)
-            this.toggleInputLoader();
         searchBars(this.input).then(results => {
             this.drips = results.map(result => {
                 if (this.savedNames.indexOf(result.name) !== -1) {
@@ -57,29 +54,17 @@ export default class AppModel {
                 }
             });
             this.loading = false;
-            if (!resetter)
-                this.toggleInputLoader();
         });
     }
 
     @action.bound saveSearch() {
-        console.log('Method');
-        if (this.googleResults.length > 0)
-            console.log('Saving');
+        if (this.drips.length > 0)
             sessionStorage.setItem('search', this.input);
     }
 
-    @action toggleInputLoader() {
-        this.loading ?
-            document.getElementsByClassName('is-expanded')[0].className += ' is-loading' :
-            document.getElementsByClassName('is-loading')[0].className = 'control is-expanded';
-    }
-
     @action loadSavedUser() {
-        this.loading = true;
         loadUser().then(user => {
             this.username = user.username;
-            this.loading = false;
         });
     }
 
@@ -89,30 +74,13 @@ export default class AppModel {
 
         if (searchTerm) {
             this.input = searchTerm;
-            this.search(true);
+            this.search();
         }
     }
 
     @action loadSavedDrips() {
-        this.loading = true;
         loadDrips().then(drips => {
             this.savedDrips = drips;
-            this.loading = false;
         });
     }
 }
-
-const mockResults = [
-    {
-        name: 'Sydney',
-        photoRef: 'asdasd',
-    },
-    {
-        name: 'New York',
-        photoRef: 'asdasd',
-    },
-    {
-        name: 'Clermont',
-        photoRef: 'asdasd',
-    }
-];

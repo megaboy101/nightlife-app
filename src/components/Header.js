@@ -4,14 +4,14 @@ import I from 'react-fontawesome';
 import css from '../styles/header.css';
 import D from '../assets/dripD2.svg';
 
-const Header = ({ enterInput, submitInput, saveSearch, inputValue, username }) => (
+const Header = ({ enterInput, submitInput, saveSearch, inputValue, loading, username }) => (
     <header className={`hero is-fullheight is-primary ${css.headerColor}`}>
         <div className="hero-body">
             <div className="container has-text-centered">
                 <h1 className={`title ${css.title}`}><D className={css.d} width="125" height="125" />rip</h1>
                 <div className="container">
                     <div className={`field ${css.inputField}`}>
-                        <div className="control is-expanded">
+                        <div className={`control is-expanded ${loading ? 'is-loading' : ''}`}>
                             <input className={`input is-medium ${css.curveMod}`} onChange={enterInput} value={inputValue} type="text" placeholder="Drop it!" />
                         </div>
                     </div>

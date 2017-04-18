@@ -12,6 +12,7 @@ const App = ({ model }) => (
             inputValue={model.input}
             submitInput={model.search}
             saveSearch={model.saveSearch}
+            loading={model.loading}
             username={model.username} />
         <Body model={model} />
         <Footer />

@@ -1,33 +1,25 @@
 /* eslint-disable no-console */
 import express from 'express';
-import webpack from 'webpack';
 import passport from 'passport';
 import session from 'express-session';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
-import webpackDevMiddleware from 'webpack-dev-middleware';
 import path from 'path';
-import config from '../webpack.config.dev.js';
 import router from './routes.js';
 import authConfig from './passport.config.js';
 
 
-const port = 3000;
+const port = process.env.PORT;
 const app = express();
-const compiler = webpack(config);
 
-
-mongoose.connect(`mongodb://megaboy101:thejacob@ds153730.mlab.com:53730/nightlife-app`);
-
-app.use(webpackDevMiddleware(compiler, {
-    noInfo: false,
-    publicPath: config.output.publicPath
-}));
+mongoose.connect(`mongodb://${process.env.MLAB_USERNAME}:${process.env.MLAB_PASSWORD}@ds153730.mlab.com:53730/nightlife-app`);
 
 authConfig(passport);
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+
+app.use(express.static('dist'));
 
 
 app.use(session({
@@ -49,7 +41,7 @@ app.use(passport.session());
 app.use('/api', router);
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../src/index.html'));
+    res.sendFile(path.join(__dirname, '../dist/index.html'));
 });
 
 
@@ -57,5 +49,5 @@ app.listen(port, (err) => {
     if (err)
         throw err;
 
-    console.log('Server running on port: ' + port);
+    console.log('Production server running on port: ' + port);
 });
